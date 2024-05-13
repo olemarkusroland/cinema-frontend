@@ -1,0 +1,27 @@
+.header {
+  background-color: rgb(19, 19, 19);
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+}
+
+.header-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-logo {
+
+  margin-top: -25px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.header-profile {
+  margin-right: calc(1.5% + 2rem);
+}
