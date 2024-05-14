@@ -1,0 +1,21 @@
+.screening {
+    background-color: rgb(19, 19, 19);
+    width: 270px;
+    border-radius: 8px;
+}
+
+.poster {
+    width: 270px;
+}
+
+.title {
+    margin: 4px;
+    font-size: 18px;
+    color: white;
+}
+
+.time-place-container {
+    margin-top: -4px;
+    margin-bottom: -28px;
+    color: blueviolet;
+}
