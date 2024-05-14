@@ -2,6 +2,9 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import './App.css'
 import { Header } from './header/Header'
 import { Home } from './home/Home'
+import { Route, Routes } from 'react-router-dom';
+import { Movie } from './movie/Movie';
+import { Tickets } from './tickets/Tickets'; // Import the Tickets component
 
 const theme = createTheme({
   palette: {
@@ -16,7 +19,11 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
         <Header />
-        <Home/>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/movie/pusur-filmen' element={<Movie />} />
+          <Route path='/tickets/pusur-filmen' element={<Tickets />} /> {/* Use the Tickets component */}
+        </Routes>
       </ThemeProvider>
     </div>
   )

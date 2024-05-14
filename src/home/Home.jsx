@@ -1,5 +1,5 @@
 import './Home.css';
-import { Screening } from "../screening/Screening";
+import { ScreeningCard } from "../screening-card/ScreeningCard";
 import { useState } from "react";
 import { FormControl, MenuItem, Select, InputLabel } from "@mui/material";
 import dayjs from 'dayjs';
@@ -33,7 +33,31 @@ export const Home = () => {
     return (
         <div className="home">
             <div className='date-selector'>
-                <FormControl sx={{ minWidth: 145 }}>
+                <FormControl sx={{ 
+                    minWidth: 145, 
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: '#630000',
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#ff5151',
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: '#ff5151',
+                        },
+                    },
+                    '& .MuiInputLabel-root': {
+                        color: '#630000',
+                    },
+                    '& .MuiSelect-root': {
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        color: '#630000',
+                        fontWeight: 'bold',
+                    },
+                    '& .MuiSvgIcon-root': {
+                        color: '#630000',
+                    },
+                }}>
                     <InputLabel id="date-select-label">Date</InputLabel>
                     <Select
                         labelId="date-select-label"
@@ -52,12 +76,13 @@ export const Home = () => {
                 </FormControl>
             </div>
             <div className="screenings">
-                <Screening />
-                <Screening />
-                <Screening />
-                <Screening />
-                <Screening />
-                <Screening />
+                <ScreeningCard />
+                <ScreeningCard />
+                <ScreeningCard />
+                <ScreeningCard />
+                <ScreeningCard />
+                <ScreeningCard />
+                <ScreeningCard />
             </div>
         </div>
     );
