@@ -5,27 +5,28 @@ import './TicketsList.css';
 
 export const TicketsList = () => {
   const [tickets, setTickets] = useState([
-    { id: 1, name: 'Voksen', price: 205, quantity: 2, info: null },
-    { id: 2, name: 'Barn', price: 185, quantity: 0, info: "Til og med 14 år" },
-    { id: 3, name: 'Honnør', price: 185, quantity: 1, info: "..." },
-    { id: 4, name: 'Rullestol', price: 120, quantity: 0, info: null },
-    { id: 5, name: 'Ledsager', price: 0, quantity: 0, info: "Forhåndsvalidering av ledsagerbevis kreves. Ta kontakt med cinema@solsidencinema.net for å registrere deg." },
+    { id: 1, name: 'Adult', price: 205, info: null },
+    { id: 2, name: 'Child/Youth', price: 185, info: "Up too and ncluding 14 year." },
+    { id: 3, name: 'Military', price: 185, info: "You will be required to document your right to a discount with a draft letter (travel to/from initial compulsory military service) or student ID for the military school." },
+    { id: 4, name: 'Senior citizen', price: 185, info: null },
+    { id: 5, name: 'Student', price: 145, info: "You will be required to document your right to discout with a student ID." },
+    { id: 6, name: 'Bob', price: 145, info:"You will be required to document that your name is Bob with valid ID." }
   ]);
 
+  const [quantities, setQuantities] = useState(
+    tickets.reduce((acc, ticket) => ({ ...acc, [ticket.id]: 0 }), {})
+  );
+
   const handleAdd = (id) => {
-    setTickets(tickets.map(ticket => 
-      ticket.id === id ? { ...ticket, quantity: ticket.quantity + 1 } : ticket
-    ));
+    setQuantities({ ...quantities, [id]: (quantities[id] || 0) + 1 });
   };
 
   const handleRemove = (id) => {
-    setTickets(tickets.map(ticket => 
-      ticket.id === id ? { ...ticket, quantity: ticket.quantity - 1 } : ticket
-    ));
+    setQuantities({ ...quantities, [id]: Math.max((quantities[id] || 0) - 1, 0) });
   };
 
-  const totalTickets = tickets.reduce((sum, ticket) => sum + ticket.quantity, 0);
-  const totalPrice = tickets.reduce((sum, ticket) => sum + ticket.price * ticket.quantity, 0);
+  const totalTickets = Object.values(quantities).reduce((sum, quantity) => sum + quantity, 0);
+  const totalPrice = tickets.reduce((sum, ticket) => sum + ticket.price * (quantities[ticket.id] || 0), 0);
 
   return (
     <Box className="ticket-list">
@@ -34,8 +35,8 @@ export const TicketsList = () => {
           key={ticket.id}
           name={ticket.name}
           price={ticket.price}
-          quantity={ticket.quantity}
-          hasInfo={ticket.hasInfo}
+          quantity={quantities[ticket.id] || 0}
+          info={ticket.info}
           onAdd={() => handleAdd(ticket.id)}
           onRemove={() => handleRemove(ticket.id)}
         />
@@ -46,7 +47,7 @@ export const TicketsList = () => {
             <Typography variant="h6">kr {totalPrice}</Typography>
         </div>
         <Button variant="contained" className="next-button" fullWidth>
-            Neste
+            Next
         </Button>
       </Paper>
     </Box>

@@ -9,7 +9,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Ensure items start from the left */
+  align-items: flex-start;
 }
 
 .ticket-name {
@@ -19,7 +19,6 @@
 
 .ticket-price {
   color: #6b6b6b;
-  margin: 0; /* Ensure no additional margin is causing misalignment */
 }
 
 .info-icon {
