@@ -1,10 +1,12 @@
 import { ThemeProvider, createTheme } from '@mui/material';
 import './App.css'
-import { Header } from './header/Header'
-import { Home } from './home/Home'
+import { Header } from './components/header/Header'
+import { Home } from './components/home/Home'
 import { Route, Routes } from 'react-router-dom';
-import { Movie } from './movie/Movie';
-import { Tickets } from './tickets/Tickets'; // Import the Tickets component
+import { Movie } from './components/movie/Movie';
+import { Tickets } from './components/tickets/Tickets'; // Import the Tickets component
+import { ScreeningProvider } from './context/ScreeningContext';
+import { MovieProvider } from './context/MovieContext';
 
 const theme = createTheme({
   palette: {
@@ -18,12 +20,18 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
+      <MovieProvider>
+      <ScreeningProvider>
+
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/movie/pusur-filmen' element={<Movie />} />
-          <Route path='/tickets/pusur-filmen' element={<Tickets />} /> {/* Use the Tickets component */}
+          <Route path='/movie/:id' element={<Movie />} />
+          <Route path='/tickets/:screeningId' element={<Tickets />} />
         </Routes>
+
+      </ScreeningProvider>
+      </MovieProvider>
       </ThemeProvider>
     </div>
   )

@@ -84,7 +84,7 @@
     font-size: 18px;
     color: white;
     z-index: 1;
-    position: relative;
+    font-weight: 500;
 }
 
 .perforation {
@@ -112,6 +112,7 @@
     text-decoration: none;
     color: inherit;
     display: block;
+    font-weight: normal;
 }
 
 .movie-link:hover .title,
@@ -121,4 +122,13 @@
     filter: brightness(1.1);
     color: rgb(255, 69, 69);
     text-decoration: underline;
+}
+
+.non-clickable .movie-link:hover .title,
+.non-clickable .movie-link:hover .poster,
+.non-clickable .movie-link:hover .perforation,
+.non-clickable .movie-link:hover .time-place-container {
+    filter: initial;
+    color: initial;
+    text-decoration: initial;
 }

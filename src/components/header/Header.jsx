@@ -1,5 +1,5 @@
 import './Header.css'
-import logo from '../assets/cinema.png'
+import logo from '../../assets/cinema.png'
 import { Link } from 'react-router-dom'
 
 export const Header = () => {
