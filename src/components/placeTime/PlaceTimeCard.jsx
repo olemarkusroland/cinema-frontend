@@ -1,8 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import './PlaceTimeCard.css';
 
-export const PlaceTimeCard = ({ screening, isClickable = true, includeDate=true }) => {
+import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
+
+export const PlaceTimeCard = ({ screening, isClickable=true, includeDate=true }) => {
   const { id, date, time, auditorium } = screening;
 
   const content = (
@@ -20,4 +22,15 @@ export const PlaceTimeCard = ({ screening, isClickable = true, includeDate=true 
   ) : (
     content
   );
+};
+
+PlaceTimeCard.propTypes = {
+  screening: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    auditorium: PropTypes.string.isRequired,
+  }).isRequired,
+  isClickable: PropTypes.bool,
+  includeDate: PropTypes.bool
 };

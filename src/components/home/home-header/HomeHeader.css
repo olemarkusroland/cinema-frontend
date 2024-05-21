@@ -1,0 +1,10 @@
+.home-header {
+    background-color: #131313;
+    width: 100%;
+}
+
+.date-selector {
+    border-radius: 8px;
+    background-color: #131313;
+    padding: 8px;
+}

@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { MovieContext } from '../../context/MovieContext';
 
 export const Movie = () => {
-    const { id } = useParams(); // Correct parameter name
+    const { id } = useParams();
     const { movies } = useContext(MovieContext);
     const { screenings } = useContext(ScreeningContext);
 

@@ -1,9 +1,6 @@
 import './Tickets.css';
 
-import React, { useContext } from 'react';
-import dayjs from 'dayjs';
-
-import poster from '../../assets/pusur-filmen.webp';
+import { useContext } from 'react';
 
 import { TicketsList } from './ticketsList/TicketsList';
 import { ScreeningCard } from '../screening-card/ScreeningCard';
