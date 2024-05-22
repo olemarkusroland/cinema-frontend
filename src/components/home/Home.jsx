@@ -17,38 +17,36 @@ export const Home = () => {
     const { screenings } = useContext(ScreeningContext);
     const { movies } = useContext(MovieContext);
 
-    const shortByStartTime = () => {
+    const shortByStartTime = (screenings) => {
         return screenings.sort((a, b) => {
             const [h1, m1] = a.time.split(':').map(Number);
             const [h2, m2] = b.time.split(':').map(Number);
             return h1 - h2 || m1 - m2;
         });
-    }
+    };
 
-    const shortByAlphabetical = () => {
+    const shortByAlphabetical = (screenings) => {
         return screenings.sort((a, b) => {
             const movieA = movies.find(movie => movie.id === a.movieId);
             const movieB = movies.find(movie => movie.id === b.movieId);
             return movieA.name.localeCompare(movieB.name);
         });
-    }
+    };
 
     const sortScreenings = (screenings, option) => {
         switch (option) {
             case 'startTime':
-                shortByStartTime();
-                break;
+                return shortByStartTime(screenings);
             case 'alphabetical':
-                shortByAlphabetical();
-                break;
+                return shortByAlphabetical(screenings);
             default:
-                break;
+                return screenings;
         }
-
-        return screenings;
     };
 
-    const filteredScreenings = screenings.filter(screening => screening.date === selectedDate);
+    const filteredScreenings = screenings
+        .filter(screening => screening.date === selectedDate)
+        .filter(screening => selectedAuditoriums.length === 0 || selectedAuditoriums.includes(screening.auditorium));
 
     const sortedScreenings = sortScreenings(filteredScreenings, sortOption);
 
