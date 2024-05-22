@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import './TicketsList.css';
+import { useState } from 'react';
 import { Box, Typography, Button, Paper } from '@mui/material';
 import { TicketsItem } from './ticketsItem/TicketsItem';
-import './TicketsList.css';
 
 export const TicketsList = () => {
-  const [tickets, setTickets] = useState([
+  const tickets = [
     { id: 1, name: 'Adult', price: 205, info: null },
-    { id: 2, name: 'Child/Youth', price: 185, info: "Up too and ncluding 14 year." },
-    { id: 3, name: 'Military', price: 185, info: "You will be required to document your right to a discount with a draft letter (travel to/from initial compulsory military service) or student ID for the military school." },
-    { id: 4, name: 'Senior citizen', price: 185, info: null },
-    { id: 5, name: 'Student', price: 145, info: "You will be required to document your right to discout with a student ID." },
-    { id: 6, name: 'Bob', price: 145, info:"You will be required to document that your name is Bob with valid ID." }
-  ]);
+    { id: 2, name: 'Child/Youth', price: 185, info: "Up to and including 14 years old." },
+    { id: 3, name: 'Military', price: 185, info: "You will be required to provide documentation for your discount, such as a draft letter (travel to/from initial compulsory military service) or a student ID for military school." },
+    { id: 4, name: 'Senior Citizen', price: 185, info: null },
+    { id: 5, name: 'Student', price: 145, info: "You will be required to provide a student ID to validate your discount." },
+    { id: 6, name: 'Bob', price: 145, info: "You will need to provide valid ID to confirm your name is Bob." }
+  ];
 
   const [quantities, setQuantities] = useState(
     tickets.reduce((acc, ticket) => ({ ...acc, [ticket.id]: 0 }), {})
