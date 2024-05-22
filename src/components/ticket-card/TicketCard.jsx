@@ -2,7 +2,6 @@ import './TicketCard.css';
 
 import PropTypes from 'prop-types';
 
-import poster from '../../assets/pusur-filmen.webp';
 import { ScreeningCard } from '../screening-card/ScreeningCard';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
