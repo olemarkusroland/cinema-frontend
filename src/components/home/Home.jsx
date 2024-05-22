@@ -12,7 +12,7 @@ export const Home = () => {
     
     const [selectedDate, setSelectedDate] = useState(todayFormatted);
     const [sortOption, setSortOption] = useState('startTime');
-    const [selectedAuditorium, setSelectedAuditorium] = useState('');
+    const [selectedAuditoriums, setSelectedAuditoriums] = useState([]);
     
     const { screenings } = useContext(ScreeningContext);
     const { movies } = useContext(MovieContext);
@@ -59,8 +59,8 @@ export const Home = () => {
                 setSelectedDate={setSelectedDate} 
                 sortOption={sortOption} 
                 setSortOption={setSortOption} 
-                selectedAuditorium={selectedAuditorium}
-                setSelectedAuditorium={setSelectedAuditorium}
+                selectedAuditorium={selectedAuditoriums}
+                setSelectedAuditorium={setSelectedAuditoriums}
             />
             <div className="screenings">
                 {sortedScreenings.map(screening => (

@@ -1,11 +1,9 @@
 import '../HomeHeader.css';
-
 import { FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import dayjs from 'dayjs';
 
-
-export const DateSelector = ({ selectedDate, setSelectedDate }) => {
-    const handleDateChange = (event) => {
+export const DateSelect = ({ selectedDate, setSelectedDate }) => {
+    const handleChange = (event) => {
         setSelectedDate(event.target.value);
     };
 
@@ -32,18 +30,18 @@ export const DateSelector = ({ selectedDate, setSelectedDate }) => {
     };
 
     return (
-        <FormControl className="date-selector">
+        <FormControl className="selector">
             <InputLabel id="date-select-label">Date</InputLabel>
             <Select
                 labelId="date-select-label"
                 id="date-select"
                 value={selectedDate}
                 label="Date"
-                onChange={handleDateChange}
+                onChange={handleChange}
                 renderValue={renderSelectedValue}
                 MenuProps={{
                     PaperProps: {
-                        className: "date-selector"
+                        className: "selector"
                     },
                 }}
             >

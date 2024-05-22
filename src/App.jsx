@@ -11,7 +11,7 @@ import { MovieProvider } from './context/MovieContext';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#630000',  // Change this color to your desired highlight color
+      main: '#630000',
     },
   },
 });

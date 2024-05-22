@@ -1,8 +1,7 @@
 .home-header {
     background-color: #dddddd;
     width: 100%;
-    padding-top: 8px;
-    padding-bottom: 6px;
+    min-height: 5.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,21 +9,49 @@
 
 .selector-wrapper {
     display: flex;
-    gap: 5vw;
+    gap: 3vw;
 }
 
-.date-selector .MuiInputBase-root,
-.sort-selector .MuiInputBase-root {
-    min-width: 18vw;
+.selector .MuiInputBase-root {
+    min-width: 20vw;
 }
 
-.date-selector .MuiInputLabel-root,
-.sort-selector .MuiInputLabel-root {
+.selector .MuiInputLabel-root {
     color: #131313;
-    font-weight: bold;
 }
 
-.date-selector .MuiSvgIcon-root,
-.sort-selector .MuiSvgIcon-root {
+.selector .MuiSvgIcon-root {
     color: #131313;
+}
+
+.selector .MuiMenuItem-root {
+    color: #131313;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.selector .MuiMenuItem-root.Mui-selected,
+.chip {
+    background-color: #640000;
+    color: white;
+}
+
+.selector .MuiMenuItem-root:hover,
+.selector .MuiMenuItem-root.Mui-selected:hover {
+    background-color: #b61919;
+    color: white;
+}
+
+.selector .MuiMenuItem-root.Mui-focusVisible {
+    background-color: inherit;
+    color: inherit;
+}
+
+.selector .MuiMenuItem-root.Mui-selected.Mui-focusVisible {
+    background-color: #640000;
+    color: white;
 }

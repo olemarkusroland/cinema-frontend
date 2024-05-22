@@ -1,23 +1,23 @@
 import '../HomeHeader.css';
 import { FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 
-export const SortSelector = ({ sortOption, setSortOption }) => {
-    const handleSortChange = (event) => {
+export const SortSelect = ({ sortOption, setSortOption }) => {
+    const handleChange = (event) => {
         setSortOption(event.target.value);
     };
 
     return (
-        <FormControl className="sort-selector">
+        <FormControl className="selector">
             <InputLabel id="sort-select-label">Sort by</InputLabel>
             <Select
                 labelId="sort-select-label"
                 id="sort-select"
                 value={sortOption}
                 label="Sort by"
-                onChange={handleSortChange}
+                onChange={handleChange}
                 MenuProps={{
                     PaperProps: {
-                        className: "sort-selector"
+                        className: "selector"
                     },
                 }}
             >

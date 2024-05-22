@@ -1,13 +1,15 @@
 import './HomeHeader.css';
-import { DateSelector } from './date-selector/DateSelector';
-import { SortSelector } from './sort-selector/SortSelector';
+import { AuditoriumSelect } from './select-components/AuditoriumSelect';
+import { DateSelect } from './select-components/DateSelect';
+import { SortSelect } from './select-components/SortSelect';
 
-export const HomeHeader = ({ selectedDate, setSelectedDate, sortOption, setSortOption }) => {
+export const HomeHeader = ({ selectedDate, setSelectedDate, sortOption, setSortOption, selectedAuditorium, setSelectedAuditorium }) => {
     return (
         <div className='home-header'>
             <div className='selector-wrapper'>
-                <DateSelector selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-                <SortSelector sortOption={sortOption} setSortOption={setSortOption} />
+                <DateSelect selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+                <SortSelect sortOption={sortOption} setSortOption={setSortOption} />
+                <AuditoriumSelect selectedAuditorium={selectedAuditorium} setSelectedAuditorium={setSelectedAuditorium} />
             </div>
         </div>
     );
