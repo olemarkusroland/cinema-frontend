@@ -1,12 +1,20 @@
-import './HomeHeader.css'
-
+import './HomeHeader.css';
 import { FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import dayjs from 'dayjs';
 
-export const HomeHeader = ({selectedDate, setSelectedDate, today}) => {
+
+export const HomeHeader = ({ selectedDate, setSelectedDate, sortOption, setSortOption, selectedAuditorium, setSelectedAuditorium }) => {
     const handleDateChange = (event) => {
         setSelectedDate(event.target.value);
     };
+
+    const handleSortChange = (event) => {
+        setSortOption(event.target.value);
+    };
+
+    const handleAuditoriumChange = (event) => {
+        setSelectedAuditorium(event.target.value)
+    }
 
     const dates = [
         dayjs(),
@@ -15,50 +23,25 @@ export const HomeHeader = ({selectedDate, setSelectedDate, today}) => {
     ];
 
     const renderSelectedValue = (value) => {
-        if (value === today) {
-            return <span style={{ color: 'white' }}>Today</span>;
-        }
         const matchingDate = dates.find(date => date.format('YYYY-MM-DD') === value);
-        return matchingDate ? <span style={{ color: 'white' }}>{matchingDate.format('ddd DD. MMM')}</span> : '';
+
+        if (!matchingDate) {
+            return '';
+        }
+
+        if (value === dayjs().format('YYYY-MM-DD')) {
+            return <span>Today, {matchingDate.format('ddd DD. MMM')}</span>;
+        } else if (value === dayjs().add(1, 'day').format('YYYY-MM-DD')) {
+            return <span>Tomorrow, {matchingDate.format('ddd DD. MMM')}</span>;
+        } else {
+            return <span>{matchingDate.format('ddd DD. MMM')}</span>;
+        }
     };
 
     return (
         <div className='home-header'>
-            <div className='date-selector'>
-                <FormControl sx={{
-                    minWidth: 145,
-                    backgroundColor: '#131313',
-                    borderRadius: '4px',
-                    '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                            borderColor: '#630000',
-                            borderWidth: '2px',
-                        },
-                        '&:hover fieldset': {
-                            borderColor: '#630000',
-                            borderWidth: '2px',
-                        },
-                        '&.Mui-focused fieldset': {
-                            borderColor: '#630000',
-                            borderWidth: '2px',
-                        },
-                    },
-                    '& .MuiInputLabel-root': {
-                        color: '#630000',
-                        fontWeight: 'bold',
-                    },
-                    '& .MuiSelect-root': {
-                        backgroundColor: '#131313',
-                        color: 'white',
-                        fontWeight: 'bold',
-                    },
-                    '& .MuiSvgIcon-root': {
-                        color: 'white',
-                    },
-                    '& .MuiPaper-root': {
-                        backgroundColor: '#131313',
-                    },
-                }}>
+            <div className='selector-wrapper'>
+                <FormControl className="date-selector">
                     <InputLabel id="date-select-label">Date</InputLabel>
                     <Select
                         labelId="date-select-label"
@@ -69,22 +52,7 @@ export const HomeHeader = ({selectedDate, setSelectedDate, today}) => {
                         renderValue={renderSelectedValue}
                         MenuProps={{
                             PaperProps: {
-                                sx: {
-                                    bgcolor: '#131313',
-                                    '& .MuiMenuItem-root': {
-                                        color: 'white',
-                                        '&:hover': {
-                                            backgroundColor: '#131313',
-                                        },
-                                        '&.Mui-selected': {
-                                            backgroundColor: '#131313',
-                                            color: 'white',
-                                            '&:hover': {
-                                                backgroundColor: '#131313',
-                                            },
-                                        },
-                                    },
-                                },
+                                className: "date-selector"
                             },
                         }}
                     >
@@ -95,7 +63,25 @@ export const HomeHeader = ({selectedDate, setSelectedDate, today}) => {
                         ))}
                     </Select>
                 </FormControl>
+                <FormControl className="sort-selector">
+                    <InputLabel id="sort-select-label">Sort by</InputLabel>
+                    <Select
+                        labelId="sort-select-label"
+                        id="sort-select"
+                        value={sortOption}
+                        label="Sort by"
+                        onChange={handleSortChange}
+                        MenuProps={{
+                            PaperProps: {
+                                className: "sort-selector"
+                            },
+                        }}
+                    >
+                        <MenuItem value="startTime">Start Time</MenuItem>
+                        <MenuItem value="alphabetical">Alphabetical</MenuItem>
+                    </Select>
+                </FormControl>
             </div>
         </div>
-    )
-}
+    );
+};

@@ -43,7 +43,7 @@ export const TicketsList = () => {
       ))}
       <Paper elevation={2} className="summary">
         <div className='ticket-count'>
-            <Typography variant="h6">{totalTickets} billetter</Typography>
+            <Typography variant="h6">{totalTickets} Tickets</Typography>
             <Typography variant="h6">kr {totalPrice}</Typography>
         </div>
         <Button variant="contained" className="next-button" fullWidth>

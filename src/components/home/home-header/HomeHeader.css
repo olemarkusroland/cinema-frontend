@@ -1,6 +1,30 @@
 .home-header {
-    background-color: #131313;
+    background-color: #dddddd;
     width: 100%;
-    padding-top: 6px;
+    padding-top: 8px;
     padding-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selector-wrapper {
+    display: flex;
+    gap: 5vw;
+}
+
+.date-selector .MuiInputBase-root,
+.sort-selector .MuiInputBase-root {
+    min-width: 18vw;
+}
+
+.date-selector .MuiInputLabel-root,
+.sort-selector .MuiInputLabel-root {
+    color: #131313;
+    font-weight: bold;
+}
+
+.date-selector .MuiSvgIcon-root,
+.sort-selector .MuiSvgIcon-root {
+    color: #131313;
 }

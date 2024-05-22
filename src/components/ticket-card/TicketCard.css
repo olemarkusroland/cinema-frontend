@@ -1,0 +1,134 @@
+.screening-card {
+    background-color: rgb(19, 19, 19);
+    width: 270px;
+    position: relative;
+    padding-bottom: 16px;
+    overflow: hidden;
+}
+
+.screening-card::before,
+.screening-card::after {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    background-color: white;
+    z-index: 2;
+}
+
+.screening-card::before {
+    top: -16px;
+    left: -16px;
+    border-bottom-right-radius: 17px;
+}
+
+.screening-card::after {
+    top: -16px;
+    right: -16px;
+    border-bottom-left-radius: 17px;
+}
+
+.screening-card .bottom::before,
+.screening-card .bottom::after {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(19, 19, 19);
+    z-index: 1;
+}
+
+.screening-card .bottom::after {
+    bottom: -16px;
+    right: -16px;
+    border-top-left-radius: 17px;
+}
+
+.screening-card .bottom::before {
+    bottom: -16px;
+    left: -16px;
+    border-top-right-radius: 17px;
+}
+
+.screening-card .bottom .corner::before,
+.screening-card .bottom .corner::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    z-index: 3;
+}
+
+.screening-card .bottom .corner::before {
+    bottom: -16px;
+    left: -16px;
+    border-top-right-radius: 15px;
+}
+
+.screening-card .bottom .corner::after {
+    bottom: -16px;
+    right: -16px;
+    border-top-left-radius: 15px;
+}
+
+.poster {
+    width: 100%;
+    transition: transform 0.3s, filter 0.3s;
+    z-index: 1;
+    position: relative;
+}
+
+.title {
+    margin: 4px;
+    font-size: 18px;
+    color: white;
+    z-index: 1;
+    font-weight: 500;
+}
+
+.perforation {
+    height: 3px;
+    background-image: linear-gradient(to right, white 50%, rgba(255, 255, 255, 0) 0%);
+    background-size: 20px;
+    margin: 8px 0;
+    z-index: 1;
+    position: relative;
+}
+
+.time-place-container {
+    margin-bottom: -44px;
+    margin-left: 6px;
+    margin-right: 6px;
+    z-index: 1;
+    position: relative;
+}
+
+.screening-card-place-time {
+    margin-bottom: 34px;
+}
+
+.movie-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    font-weight: normal;
+}
+
+.movie-link:hover .title,
+.movie-link:hover .poster,
+.movie-link:hover .perforation,
+.movie-link:hover .time-place-container {
+    filter: brightness(1.1);
+    color: rgb(255, 69, 69);
+    text-decoration: underline;
+}
+
+.non-clickable .movie-link:hover .title,
+.non-clickable .movie-link:hover .poster,
+.non-clickable .movie-link:hover .perforation,
+.non-clickable .movie-link:hover .time-place-container {
+    filter: initial;
+    color: initial;
+    text-decoration: initial;
+}

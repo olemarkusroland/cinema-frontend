@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import poster from '../../assets/pusur-filmen.webp';
-
 import './Movie.css';
-import { PlaceTimeCard } from '../placeTime/PlaceTimeCard';
+import { ScreeningCard } from '../screening-card/ScreeningCard';
 import { ScreeningContext } from '../../context/ScreeningContext';
 import { useParams } from 'react-router-dom';
 import { MovieContext } from '../../context/MovieContext';
+import { Poster } from '../poster/Poster';
 
 export const Movie = () => {
     const { id } = useParams();
@@ -22,11 +21,7 @@ export const Movie = () => {
     return (
         <div className='movie'>
             <div className='movie-header'>
-                <img
-                    className="movie-poster"
-                    src={poster}
-                    alt={`${movie.name} Poster`}
-                />
+                <Poster className="movie-poster" movie={movie} />
                 <div className='movie-details'>
                     <h1 className='movie-title'>{movie.name}</h1>
                     <p className='movie-description'>
@@ -40,7 +35,7 @@ export const Movie = () => {
             <div className='place-times'>
                 {filteredScreenings.length > 0 ? (
                     filteredScreenings.map((screening, index) => (
-                        <PlaceTimeCard key={index} screening={screening} className="movie-place-time" />
+                        <ScreeningCard key={index} screening={screening} className="movie-place-time" />
                     ))
                 ) : (
                     <p>No screenings available</p>

@@ -2,52 +2,35 @@ import './ScreeningCard.css';
 
 import PropTypes from 'prop-types';
 
-import poster from '../../assets/pusur-filmen.webp';
-import { PlaceTimeCard } from '../placeTime/PlaceTimeCard';
 import { Link } from 'react-router-dom';
 
-export const ScreeningCard = ({ screening, isClickable = true, includeDate = true }) => {
-    const movieContent = (
-        <div className="movie-link">
-            <img
-                className="poster"
-                src={poster}
-                alt="Pusur Filmen Poster"
-            />
-            <p className='title'>Pusur Filmen</p>
-        </div>
-    );
-    
-    return (
-        <div className={`screening-card ${isClickable ? '' : 'non-clickable'}`}>
-            {isClickable ? (
-                <Link to={`movie/${screening.movieId}`} className="movie-link">
-                    {movieContent}
-                </Link>
-            ) : (
-                movieContent
-            )}
-            <div className="perforation"></div>
-            <div className='time-place-container bottom'>
-                <PlaceTimeCard screening={screening} isClickable={isClickable} includeDate={includeDate}/>
-                <div className="corner"></div>
-            </div>
-        </div>
+export const ScreeningCard = ({ screening, isClickable=true, includeDate=true }) => {
+  const { id, date, time, auditorium } = screening;
+
+  const content = (
+    <div className={`place-time ${isClickable ? 'place-time--clickable' : 'place-time--non-clickable'} screening-card-place-time `}>
+      {includeDate && <p className={`date ${isClickable ? 'date--clickable' : 'date--non-clickable'}`}>{date}</p>}
+      <p className='time'>{time}</p>
+      <p className='auditorium'>{auditorium}</p>
+    </div>
+  );
+
+  return isClickable ? (
+    <Link to={`/tickets/${id}`}>
+      {content}
+    </Link>
+  ) : (
+    content
   );
 };
 
 ScreeningCard.propTypes = {
-  isClickable: PropTypes.bool,
   screening: PropTypes.shape({
     id: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
     auditorium: PropTypes.string.isRequired,
-    movieId: PropTypes.number.isRequired,
   }).isRequired,
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  includeDate: PropTypes.bool,
+  isClickable: PropTypes.bool,
+  includeDate: PropTypes.bool
 };
