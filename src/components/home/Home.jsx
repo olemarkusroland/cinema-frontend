@@ -61,6 +61,7 @@ export const Home = () => {
     return (
         <div className="home">
             <HomeHeader 
+                screenings={screenings}
                 selectedDate={selectedDate} 
                 setSelectedDate={setSelectedDate} 
                 sortOption={sortOption} 

@@ -2,27 +2,27 @@ import '../HomeHeader.css';
 import { FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import dayjs from 'dayjs';
 
-export const DateSelect = ({ selectedDate, setSelectedDate }) => {
+export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
     const handleChange = (event) => {
         setSelectedDate(event.target.value);
     };
 
-    const dates = [
-        dayjs(),
-        dayjs().add(1, 'day'),
-        dayjs().add(2, 'days'),
-    ];
+    const dates = Array.from(new Set(screenings
+        .map(screening => dayjs(screening.date, 'DD MMM YYYY'))
+        .filter(date => date.isAfter(dayjs().subtract(1, 'day'), 'day'))
+        .map(date => date.format('YYYY-MM-DD'))
+    )).sort();
 
     const renderSelectedValue = (value) => {
-        const matchingDate = dates.find(date => date.format('YYYY-MM-DD') === value);
+        const matchingDate = dayjs(value, 'YYYY-MM-DD');
 
-        if (!matchingDate) {
+        if (!matchingDate.isValid()) {
             return '';
         }
 
-        if (value === dayjs().format('YYYY-MM-DD')) {
+        if (matchingDate.isSame(dayjs(), 'day')) {
             return <span>Today, {matchingDate.format('ddd DD. MMM')}</span>;
-        } else if (value === dayjs().add(1, 'day').format('YYYY-MM-DD')) {
+        } else if (matchingDate.isSame(dayjs().add(1, 'day'), 'day')) {
             return <span>Tomorrow, {matchingDate.format('ddd DD. MMM')}</span>;
         } else {
             return <span>{matchingDate.format('ddd DD. MMM')}</span>;
@@ -46,8 +46,8 @@ export const DateSelect = ({ selectedDate, setSelectedDate }) => {
                 }}
             >
                 {dates.map((date, index) => (
-                    <MenuItem key={index} value={date.format('YYYY-MM-DD')}>
-                        {date.format('ddd DD. MMM')}
+                    <MenuItem key={index} value={date}>
+                        {dayjs(date, 'YYYY-MM-DD').format('ddd DD. MMM')}
                     </MenuItem>
                 ))}
             </Select>
