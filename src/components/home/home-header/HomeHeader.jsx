@@ -9,7 +9,7 @@ export const HomeHeader = ({ screenings, selectedDate, setSelectedDate, sortOpti
             <div className='selector-wrapper'>
                 <DateSelect screenings={screenings} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
                 <SortSelect sortOption={sortOption} setSortOption={setSortOption} />
-                <AuditoriumSelect selectedAuditorium={selectedAuditorium} setSelectedAuditorium={setSelectedAuditorium} />
+                <AuditoriumSelect screenings={screenings} selectedDate={selectedDate} selectedAuditorium={selectedAuditorium} setSelectedAuditorium={setSelectedAuditorium} />
             </div>
         </div>
     );
