@@ -10,14 +10,26 @@ import { Poster } from '../poster/Poster';
 
 export const TicketCard = ({ screening, isClickable = true, includeDate = true }) => {
     const { movies } = useContext(MovieContext);
-    const movie = movies.find(m => m.id === screening.movieId);
 
-    const movieContent = (
-        <div className="movie-link">
-            <Poster className={"poster"} movie={movie} />
-            <p className='title'>{movie.name}</p>
-        </div>
-    );
+    const movie = movies.find(m => m.imdbID === screening.movieId);
+    
+    let movieContent;
+
+    if (movie) {
+        movieContent = (
+            <div className="movie-link">
+                <Poster className={"poster"} movie={movie} />
+                <p className='title'>{movie.title}</p>
+            </div>
+        );
+    }
+    else {
+        movieContent = (
+            <div className="movie-link">
+                <p className='error-message'>No movie data available</p>
+            </div>
+        );
+    }
     
     return (
         <div className={`screening-card ${isClickable ? '' : 'non-clickable'}`}>
@@ -44,7 +56,7 @@ ScreeningCard.propTypes = {
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
     auditorium: PropTypes.string.isRequired,
-    movieId: PropTypes.number.isRequired,
+    movieId: PropTypes.string.isRequired,
   }).isRequired,
   includeDate: PropTypes.bool,
 };

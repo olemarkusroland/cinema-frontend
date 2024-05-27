@@ -6,8 +6,8 @@ export const Poster = ({ movie, className }) => {
             <img
                 className={className}
                 src={poster}
-                alt={`${movie.name} Poster`}
+                alt={`${movie.title} Poster`}
             />
         </div>
-    )
-}
+    );
+};

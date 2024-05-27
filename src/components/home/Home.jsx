@@ -50,10 +50,6 @@ export const Home = () => {
             <p>Screenings not found</p>
         )
     }
-
-    screenings.forEach(s => {
-        console.log("Screening date: " + s.date)
-    });
     
     const filteredScreenings = screenings
         .filter(screening => screening.date === selectedDate)
