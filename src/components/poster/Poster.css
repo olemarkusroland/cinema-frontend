@@ -1,3 +1,14 @@
-.poster {
-    
+.poster-container {
+    height: 388px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    overflow: hidden;
+}
+
+.poster-container img {
+    max-height: none;
+    width: auto;
+    height: 100%;
+    object-fit: cover;
 }
