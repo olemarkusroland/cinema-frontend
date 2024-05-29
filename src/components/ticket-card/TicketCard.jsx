@@ -26,7 +26,7 @@ export const TicketCard = ({ screening, isClickable = true, includeDate = true }
     else {
         movieContent = (
             <div className="movie-link">
-                <p className='error-message'>No movie data available</p>
+                <p className='title'>Loading movie</p>
             </div>
         );
     }

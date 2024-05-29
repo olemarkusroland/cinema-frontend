@@ -1,0 +1,36 @@
+.curtain {
+  overflow: hidden;
+  z-index: 200;
+}
+
+.curtain__panel {
+  position: fixed;
+  background: #630000;
+  float: left;
+  position: relative;
+  width: 50%;
+  min-height: 100vh; 
+  transition: all 0.2s ease-out;
+  z-index: 100;
+}
+
+.curtain__panel--left {
+  justify-content: flex-end;
+  transform: translateX(calc(-100% - 1px));
+}
+
+.curtain__panel--right {
+  justify-content: flex-start;
+  transform: translateX(calc(100% ));
+}
+
+.curtain__content {
+  position: absolute;
+  width: 75%;
+  background-color: white;
+
+}
+
+.slide-in {
+  transform: translateX(0) !important;
+}
