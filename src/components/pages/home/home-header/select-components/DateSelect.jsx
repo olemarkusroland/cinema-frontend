@@ -1,6 +1,7 @@
 import '../HomeHeader.css';
 import { FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import dayjs from 'dayjs';
+import { formatDate } from '../../../../../utils/formatDate';
 
 export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
     const handleChange = (event) => {
@@ -13,22 +14,6 @@ export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
         .map(date => date.format('YYYY-MM-DD'))
     )).sort();
 
-    const renderSelectedValue = (value) => {
-        const matchingDate = dayjs(value, 'YYYY-MM-DD');
-
-        if (!matchingDate.isValid()) {
-            return '';
-        }
-
-        if (matchingDate.isSame(dayjs(), 'day')) {
-            return <span>Today, {matchingDate.format('ddd DD. MMM')}</span>;
-        } else if (matchingDate.isSame(dayjs().add(1, 'day'), 'day')) {
-            return <span>Tomorrow, {matchingDate.format('ddd DD. MMM')}</span>;
-        } else {
-            return <span>{matchingDate.format('ddd DD. MMM')}</span>;
-        }
-    };
-
     return (
         <FormControl className="selector">
             <InputLabel id="date-select-label">Date</InputLabel>
@@ -38,7 +23,7 @@ export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
                 value={selectedDate}
                 label="Date"
                 onChange={handleChange}
-                renderValue={renderSelectedValue}
+                renderValue={formatDate}
                 MenuProps={{
                     PaperProps: {
                         className: "selector"

@@ -1,25 +1,26 @@
 import './Tickets.css';
 
-import { useContext } from 'react';
-
 import { TicketsList } from './ticketsList/TicketsList';
-import { useParams } from 'react-router-dom';
-import { ScreeningContext } from '../../../context/ScreeningContext';
+import { useLocation } from 'react-router-dom';
 import { TicketCard } from '../../ticket-card/TicketCard';
+import { useContext } from 'react';
+import { MovieContext } from '../../../context/MovieContext';
 
 export const Tickets = () => {
-    const { screeningId } = useParams();
-    const { screenings } = useContext(ScreeningContext)
+    const location = useLocation();
+    const locationState = location.state || {};
+    const screening = locationState.screening;
 
-    const screening = screenings.find(s => s.id == parseInt(screeningId));
+    const { movies } = useContext(MovieContext);
+    const movie = movies.find(m => m.imdbID === screening.movieId);
 
     return (
         <div className='tickets'>
             <div className='tickets-header'>
                 <div className='tickets-information'>
-                    <TicketCard screening={screening} isClickable={false} />
+                    <TicketCard screening={screening} movie={movie} isClickable={false} />
                 </div>
-                <TicketsList />
+                <TicketsList screening={screening} movie={movie}/>
             </div>
         </div>
     );

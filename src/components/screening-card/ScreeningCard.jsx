@@ -17,7 +17,10 @@ export const ScreeningCard = ({ screening, isClickable = true, includeDate = tru
   );
 
   return isClickable ? (
-    <Link to={`/tickets/${id}`}>
+    <Link 
+      to={`/tickets/${id}`}
+      state={{screening}}
+    >
       {content}
     </Link>
   ) : (

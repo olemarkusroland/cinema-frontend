@@ -4,9 +4,10 @@ import { Box, Typography, Button, Paper } from '@mui/material';
 import { TicketsItem } from './ticketsItem/TicketsItem';
 import { Link, useParams } from 'react-router-dom';
 
-export const TicketsList = () => {
-  const { id } = useParams();
-  const tickets = [
+export const TicketsList = ({screening, movie}) => {
+  const { screeningId } = useParams();
+
+  const ticketTypes = [
     { id: 1, name: 'Adult', price: 205, info: null },
     { id: 2, name: 'Child/Youth', price: 185, info: "Up to and including 14 years old." },
     { id: 3, name: 'Military', price: 185, info: "You will be required to provide documentation for your discount, such as a draft letter (travel to/from initial compulsory military service) or a student ID for military school." },
@@ -16,7 +17,7 @@ export const TicketsList = () => {
   ];
 
   const [quantities, setQuantities] = useState(
-    tickets.reduce((acc, ticket) => ({ ...acc, [ticket.id]: 0 }), {})
+    ticketTypes.reduce((acc, ticket) => ({ ...acc, [ticket.id]: 0 }), {})
   );
 
   const handleAdd = (id) => {
@@ -28,11 +29,11 @@ export const TicketsList = () => {
   };
 
   const totalTickets = Object.values(quantities).reduce((sum, quantity) => sum + quantity, 0);
-  const totalPrice = tickets.reduce((sum, ticket) => sum + ticket.price * (quantities[ticket.id] || 0), 0);
+  const totalPrice = ticketTypes.reduce((sum, ticket) => sum + ticket.price * (quantities[ticket.id] || 0), 0);
 
   return (
     <Box className="ticket-list">
-      {tickets.map(ticket => (
+      {ticketTypes.map(ticket => (
         <TicketsItem 
           key={ticket.id}
           name={ticket.name}
@@ -48,10 +49,11 @@ export const TicketsList = () => {
             <Typography variant="h6">{totalTickets} Tickets</Typography>
             <Typography variant="h6">kr {totalPrice}</Typography>
         </div>
-        <Link to={`/tickets/${id}/seats`}>
-          <Button variant="contained" className="next-button" fullWidth>
-              Next
-          </Button>
+        <Link 
+          to={`/tickets/${screeningId}/seats`}
+          state={{ screening, movie }}
+        >
+          <Button variant="contained" className="next-button" fullWidth>Next</Button>
         </Link>
       </Paper>
     </Box>

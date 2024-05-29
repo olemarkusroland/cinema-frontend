@@ -73,7 +73,11 @@ export const Home = () => {
             />
             <div className="screenings">
                 {sortedScreenings.map(screening => (
-                    <TicketCard key={screening.id} screening={screening} includeDate={false} />
+                    <TicketCard 
+                        key={screening.id} 
+                        movie={movies.find(m => m.imdbID === screening.movieId)} 
+                        screening={screening} 
+                        includeDate={false} />
                 ))}
             </div>
         </div>

@@ -4,17 +4,11 @@ import PropTypes from 'prop-types';
 
 import { ScreeningCard } from '../screening-card/ScreeningCard';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { MovieContext } from '../../context/MovieContext';
 import { Poster } from '../poster/Poster';
 
-export const TicketCard = ({ screening, isClickable = true, includeDate = true }) => {
-    const { movies } = useContext(MovieContext);
-
-    const movie = movies.find(m => m.imdbID === screening.movieId);
-    
+export const TicketCard = ({ screening, movie, isClickable = true, includeDate = true }) => {
     let movieContent;
-
+    
     if (movie) {
         movieContent = (
             <div className="movie-link">
@@ -34,7 +28,11 @@ export const TicketCard = ({ screening, isClickable = true, includeDate = true }
     return (
         <div className={`screening-card ${isClickable ? '' : 'non-clickable'}`}>
             {isClickable ? (
-                <Link to={`movie/${screening.movieId}`} className="movie-link">
+                <Link
+                    to={`movie/${screening.movieId}`}
+                    state={{ movie }}
+                    className="movie-link"
+                >
                     {movieContent}
                 </Link>
             ) : (
