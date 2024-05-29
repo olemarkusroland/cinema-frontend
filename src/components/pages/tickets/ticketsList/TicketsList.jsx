@@ -2,8 +2,10 @@ import './TicketsList.css';
 import { useState } from 'react';
 import { Box, Typography, Button, Paper } from '@mui/material';
 import { TicketsItem } from './ticketsItem/TicketsItem';
+import { Link, useParams } from 'react-router-dom';
 
 export const TicketsList = () => {
+  const { id } = useParams();
   const tickets = [
     { id: 1, name: 'Adult', price: 205, info: null },
     { id: 2, name: 'Child/Youth', price: 185, info: "Up to and including 14 years old." },
@@ -46,9 +48,11 @@ export const TicketsList = () => {
             <Typography variant="h6">{totalTickets} Tickets</Typography>
             <Typography variant="h6">kr {totalPrice}</Typography>
         </div>
-        <Button variant="contained" className="next-button" fullWidth>
-            Next
-        </Button>
+        <Link to={`/tickets/${id}/seats`}>
+          <Button variant="contained" className="next-button" fullWidth>
+              Next
+          </Button>
+        </Link>
       </Paper>
     </Box>
   );

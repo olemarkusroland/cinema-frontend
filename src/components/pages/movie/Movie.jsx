@@ -1,9 +1,12 @@
-import { useContext } from 'react';
 import './Movie.css';
-import { ScreeningCard } from '../screening-card/ScreeningCard';
-import { ScreeningContext } from '../../context/ScreeningContext';
+
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { MovieContext } from '../../context/MovieContext';
+
+import { ScreeningCard } from '../../screening-card/ScreeningCard';
+import { MovieContext } from '../../../context/MovieContext';
+import { ScreeningContext } from '../../../context/ScreeningContext';
+
 
 export const Movie = () => {
     const { id } = useParams();
@@ -15,7 +18,7 @@ export const Movie = () => {
     const filteredScreenings = screenings.filter(s => s.movieId === id);
 
     if (!movie) {
-        return <div>Movie with id {id} not found</div>;
+        return <div>Lodaing movie with id {id}</div>;
     }
 
     const movieDetails = [

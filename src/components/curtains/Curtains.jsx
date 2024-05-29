@@ -4,7 +4,7 @@ import { useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Header } from '../header/Header';
 
-import AppRoutes from '../routes/AppRoutes';
+import AppRoutes from '../pages/AppRoutes';
 
 const Curtains = () => {
   const [closeCurtain, setCloseCurtain] = useState(true);

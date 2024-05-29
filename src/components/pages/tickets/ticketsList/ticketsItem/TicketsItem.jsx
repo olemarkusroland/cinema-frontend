@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography, IconButton, Paper, Tooltip } from '@mui/material';
 import { Add, Remove, Info } from '@mui/icons-material';
 import './TicketsItem.css';

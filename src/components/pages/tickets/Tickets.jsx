@@ -4,8 +4,8 @@ import { useContext } from 'react';
 
 import { TicketsList } from './ticketsList/TicketsList';
 import { useParams } from 'react-router-dom';
-import { ScreeningContext } from '../../context/ScreeningContext';
-import { TicketCard } from '../ticket-card/TicketCard';
+import { ScreeningContext } from '../../../context/ScreeningContext';
+import { TicketCard } from '../../ticket-card/TicketCard';
 
 export const Tickets = () => {
     const { screeningId } = useParams();
@@ -21,7 +21,6 @@ export const Tickets = () => {
                 </div>
                 <TicketsList />
             </div>
-            
         </div>
     );
 };

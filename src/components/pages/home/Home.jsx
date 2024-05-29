@@ -1,11 +1,13 @@
 import './Home.css';
-import { TicketCard } from '../ticket-card/TicketCard';
-import { ScreeningContext } from '../../context/ScreeningContext';
-import { MovieContext } from '../../context/MovieContext';
-import { HomeHeader } from './home-header/HomeHeader';
 
 import { useState, useContext } from 'react';
 import dayjs from 'dayjs';
+
+import { HomeHeader } from './home-header/HomeHeader';
+import { ScreeningContext } from '../../../context/ScreeningContext';
+import { MovieContext } from '../../../context/MovieContext';
+import { TicketCard } from '../../ticket-card/TicketCard';
+
 
 export const Home = () => {
     const todayFormatted = dayjs().format('YYYY-MM-DD');
