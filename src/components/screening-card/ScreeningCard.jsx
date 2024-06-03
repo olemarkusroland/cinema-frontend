@@ -2,9 +2,14 @@ import './ScreeningCard.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { useContext } from 'react';
+import { AuditoriumContext } from '../../context/AuditoriumContext';
 
 export const ScreeningCard = ({ screening, isClickable = true, includeDate = true }) => {
-  const { id, date, time, auditorium } = screening;
+  const { id, date, time } = screening;
+  const { auditoriums } = useContext(AuditoriumContext)
+
+  const auditorium = auditoriums.find(a => a.id === screening.auditoriumId)
 
   const formattedDate = dayjs(date).format('dddd DD.MM');
 
@@ -12,7 +17,7 @@ export const ScreeningCard = ({ screening, isClickable = true, includeDate = tru
     <div className={`place-time ${isClickable ? 'place-time--clickable' : 'place-time--non-clickable'} screening-card-place-time`}>
       {includeDate && <p className={`date ${isClickable ? 'date--clickable' : 'date--non-clickable'}`}>{formattedDate}</p>}
       <p className='time'>{time}</p>
-      <p className='auditorium'>{auditorium}</p>
+      <p className='auditorium'>{auditorium.name}</p>
     </div>
   );
 

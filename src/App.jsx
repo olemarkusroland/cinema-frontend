@@ -4,6 +4,7 @@ import { ScreeningProvider } from './context/ScreeningContext';
 import { MovieProvider } from './context/MovieContext';
 import Curtains from './components/curtains/Curtains';
 import './App.css';
+import { AuditoriumProvider } from './context/AuditoriumContext';
 
 const theme = createTheme({
   palette: {
@@ -18,9 +19,11 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
         <MovieProvider>
-          <ScreeningProvider>
-            <Curtains />
-          </ScreeningProvider>
+          <AuditoriumProvider>
+            <ScreeningProvider>
+              <Curtains />
+            </ScreeningProvider>
+          </AuditoriumProvider>
         </MovieProvider>
       </ThemeProvider>
     </div>

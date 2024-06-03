@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { fetchMovies } from './Fetch/fetchMovies';
+import { fetchCinema } from '../utils/fetchCinema';
 
 export const MovieContext = createContext();
 
@@ -8,7 +8,7 @@ export const MovieProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetchMovies();
+            const data = await fetchCinema('movie');
             setMovies(data);
         };
         

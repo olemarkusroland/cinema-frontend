@@ -7,17 +7,18 @@ import { HomeHeader } from './home-header/HomeHeader';
 import { ScreeningContext } from '../../../context/ScreeningContext';
 import { MovieContext } from '../../../context/MovieContext';
 import { TicketCard } from '../../ticket-card/TicketCard';
-
+import { AuditoriumContext } from '../../../context/AuditoriumContext';
 
 export const Home = () => {
     const todayFormatted = dayjs().format('YYYY-MM-DD');
     
     const [selectedDate, setSelectedDate] = useState(todayFormatted);
     const [sortOption, setSortOption] = useState('startTime');
-    const [selectedAuditoriums, setSelectedAuditoriums] = useState([]);
+    const [selectedAuditoriumIds, setSelectedAuditoriumIds] = useState([]);
     
     const { screenings } = useContext(ScreeningContext);
     const { movies } = useContext(MovieContext);
+    const { auditoriums } = useContext(AuditoriumContext);
 
     const shortByStartTime = (screenings) => {
         return screenings.sort((a, b) => {
@@ -45,9 +46,8 @@ export const Home = () => {
                 return screenings;
         }
     };
-
-
-    if(!screenings){
+    
+    if (!screenings) {
         return (
             <p>Screenings not found</p>
         )
@@ -55,29 +55,30 @@ export const Home = () => {
     
     const filteredScreenings = screenings
         .filter(screening => screening.date === selectedDate)
-        .filter(screening => selectedAuditoriums.length === 0 || selectedAuditoriums.includes(screening.auditorium));
+        .filter(screening => selectedAuditoriumIds.length === 0 || selectedAuditoriumIds.includes(screening.auditoriumId));
 
     const sortedScreenings = sortScreenings(filteredScreenings, sortOption);
     
-
     return (
         <div className="home">
             <HomeHeader 
                 screenings={screenings}
+                auditoriums={auditoriums}
                 selectedDate={selectedDate} 
                 setSelectedDate={setSelectedDate} 
                 sortOption={sortOption} 
                 setSortOption={setSortOption} 
-                selectedAuditorium={selectedAuditoriums}
-                setSelectedAuditorium={setSelectedAuditoriums}
+                selectedAuditoriumIds={selectedAuditoriumIds}
+                setSelectedAuditoriumIds={setSelectedAuditoriumIds}
             />
             <div className="screenings">
                 {sortedScreenings.map(screening => (
-                    <TicketCard 
+                    <TicketCard
                         key={screening.id} 
                         movie={movies.find(m => m.imdbID === screening.movieId)} 
                         screening={screening} 
-                        includeDate={false} />
+                        includeDate={false} 
+                    />
                 ))}
             </div>
         </div>

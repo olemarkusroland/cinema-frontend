@@ -1,7 +1,7 @@
 import '../HomeHeader.css';
 import { FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import dayjs from 'dayjs';
-import { formatDate } from '../../../../../utils/formatDate';
+import { formatDate } from '../../../../../utils/format/formatDate';
 
 export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
     const handleChange = (event) => {
