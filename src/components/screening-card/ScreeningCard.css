@@ -5,11 +5,11 @@
     min-width: 10rem;
 
     border-radius: 8px;
+    transition: background-color 0.3s;
 }
 
 .place-time--clickable:hover {
     background-color: #b61919;
-    text-decoration: underline;
 }
 
 .date {

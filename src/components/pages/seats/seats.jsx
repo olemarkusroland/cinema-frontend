@@ -1,5 +1,7 @@
+import './Seats.css'
+
 import { useLocation } from "react-router-dom";
-import { formatDate } from "../../../utils/formatDate";
+import { formatDate } from "../../../utils/format/formatDate";
 
 export const PickSeats = () => {
     const location = useLocation();
@@ -21,6 +23,8 @@ export const PickSeats = () => {
         <div className="seats-container">
             <h1 className='movie-title'>{movie.title}</h1>
             <p>{formatDate(screening.date)}, {screening.time} in {screening.auditorium}</p>
+            <div className="separator"></div>
+
         </div>
     )
 }

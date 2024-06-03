@@ -1,0 +1,25 @@
+.summary {
+    padding: 16px;
+}
+
+.ticket-count {
+    display: flex;
+    justify-content: space-between;
+}
+
+.next-button {
+    background-color: #640000;
+    color: white;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, text-decoration 0.3s;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    background-color: #b61919;
+}

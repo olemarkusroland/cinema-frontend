@@ -1,0 +1,10 @@
+/* components/seats/SeatMap.css */
+
+.seat-map-container {
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    background-color: white; /* Light gray background for the picker */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

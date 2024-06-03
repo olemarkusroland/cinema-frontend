@@ -33,6 +33,12 @@
     justify-content: center;
 }
 
-.tickets-table {
+.ticket-list {
+  width: 90%;
 
+  margin: auto;
+
+  padding-left: 16px;
+  padding-right: 16px;
 }
+
