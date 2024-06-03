@@ -1,22 +1,21 @@
 import './Movie.css';
 
 import { useContext } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { ScreeningCard } from '../../screening-card/ScreeningCard';
 import { ScreeningContext } from '../../../context/ScreeningContext';
-
+import { MovieContext } from '../../../context/MovieContext';
 
 export const Movie = () => {
     const { id } = useParams();
+    const { movies } = useContext(MovieContext)
     const { screenings } = useContext(ScreeningContext);
-
-    const location = useLocation();
-    const locationState = location.state || {};
-    const movie = locationState.movie;
+    
+    const movie = movies.find(m => m.imdbID === id)
 
     if (!movie) {
-        return <div>Lodaing movie with id {id}</div>;
+        return <div>Loading movie with id {id}</div>;
     }
     
     const filteredScreenings = screenings.filter(s => s.movieId === id);
@@ -57,7 +56,11 @@ export const Movie = () => {
             <div className='place-times'>
                 {filteredScreenings.length > 0 ? (
                     filteredScreenings.map((screening, index) => (
-                        <ScreeningCard key={index} screening={screening} className="movie-place-time" />
+                        <ScreeningCard 
+                            key={index} 
+                            screening={screening} 
+                            className="movie-place-time" 
+                        />
                     ))
                 ) : (
                     <p>There are currently no screenings available</p>

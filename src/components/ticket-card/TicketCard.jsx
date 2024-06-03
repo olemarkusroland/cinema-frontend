@@ -8,7 +8,7 @@ import { Poster } from '../poster/Poster';
 
 export const TicketCard = ({ screening, movie, isClickable = true, includeDate = true }) => {
     let movieContent;
-    
+
     if (movie) {
         movieContent = (
             <div className="movie-link">
@@ -30,7 +30,6 @@ export const TicketCard = ({ screening, movie, isClickable = true, includeDate =
             {isClickable ? (
                 <Link
                     to={`movie/${screening.movieId}`}
-                    state={{ movie }}
                     className="movie-link"
                 >
                     {movieContent}
@@ -53,7 +52,6 @@ ScreeningCard.propTypes = {
     id: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-    auditorium: PropTypes.string.isRequired,
     movieId: PropTypes.string.isRequired,
   }).isRequired,
   includeDate: PropTypes.bool,
