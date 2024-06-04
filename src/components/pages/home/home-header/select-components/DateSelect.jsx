@@ -25,6 +25,7 @@ export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
                 onChange={handleChange}
                 renderValue={formatDate}
                 MenuProps={{
+                    disableScrollLock: true,
                     PaperProps: {
                         className: "selector"
                     },

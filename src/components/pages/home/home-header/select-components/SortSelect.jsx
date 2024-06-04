@@ -16,6 +16,7 @@ export const SortSelect = ({ sortOption, setSortOption }) => {
                 label="Sort by"
                 onChange={handleChange}
                 MenuProps={{
+                    disableScrollLock: true,
                     PaperProps: {
                         className: "selector"
                     },

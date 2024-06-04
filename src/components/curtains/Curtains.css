@@ -21,14 +21,13 @@
 
 .curtain__panel--right {
   justify-content: flex-start;
-  transform: translateX(calc(100% ));
+  transform: translateX(calc(100% + 1px));
 }
 
 .curtain__content {
   position: absolute;
   width: 75%;
   background-color: white;
-
 }
 
 .slide-in {

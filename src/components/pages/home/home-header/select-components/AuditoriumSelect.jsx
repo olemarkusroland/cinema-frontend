@@ -44,6 +44,7 @@ export const AuditoriumSelect = ({ auditoriums, screenings, selectedDate, select
                 input={<OutlinedInput id="select-multiple-chip" label="Choose auditoriums" />}
                 onChange={handleChange}
                 MenuProps={{
+                    disableScrollLock: true,
                     PaperProps: {
                         className: "selector"
                     },
