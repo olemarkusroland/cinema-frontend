@@ -1,9 +1,20 @@
-// components/seats/SeatMap.jsx
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './SeatMap.css';
+import { fetchCinema } from '../../../../utils/fetchCinema';
+import Chair from './seat-objects/Chair';
 
-const SeatMap = ({auditorium}) => {
+const SeatMap = ({ auditoriumId }) => {
+    const [auditorium, setAuditorium] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await fetchCinema(`auditorium/${auditoriumId}`);
+            setAuditorium(data);
+        };
+        
+        fetchData();
+    }, [auditoriumId]);
+
     const [selectedChairs, setSelectedChairs] = useState(new Set());
 
     const handleChairClick = (chairId) => {
@@ -18,30 +29,42 @@ const SeatMap = ({auditorium}) => {
         });
     };
 
-    const Chair = ({ x, y, chairId }) => {
-        const isSelected = selectedChairs.has(chairId);
-        const fillColor = isSelected ? "#ff0000" : "#630000"; // Red if selected, original color otherwise
+    if (!auditorium || !auditorium.seats) return null;
 
-        return (
-            <g transform={`translate(${x}, ${y})`} onClick={() => handleChairClick(chairId)}>
-                <rect x="0" y="1" width="17" height="79" rx="5" ry="4" fill={fillColor} /> {/* Left */}
-                <rect x="18" y="5" width="63" height="50" rx="5" ry="4" fill={fillColor} /> {/* Front */}
-                <rect x="18" y="56" width="63" height="24" rx="5" ry="4" fill={fillColor} />  {/* Back */}
-                <rect x="82" y="1" width="17" height="79" rx="5" ry="4" fill={fillColor} />   {/* Right */}
-                <rect x="0" y="0" width="100" height="80" fill="transparent" style={{ cursor: 'pointer' }} /> {/* Invisible rectangle to cover the entire chair area and make it clickable */}
-            </g>
-        );
-    };
-    console.log(auditorium)
+    const numRows = Math.max(...auditorium.seats.map(seat => seat.row));
+    const numCols = Math.max(...auditorium.seats.map(seat => seat.number));
+
+    const chairWidth = 100;
+    const chairHeight = 80;
+
+    const chairVerticalSpacing = 60;
+    const chairHorizontalSpacing = 20;
+
+    const yOffset = 40;
+
+    const canvasWidth = numCols * (chairWidth + chairHorizontalSpacing);
+    const canvasHeight = numRows * (chairHeight + chairVerticalSpacing) + yOffset;
+
     return (
         <div className="seat-map-container">
-            <svg width="100%" height="100%" viewBox="0 0 200 200">
+            <svg width="100%" height="100%" viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}>
                 <rect width="100%" height="100%" fill="white" />
-                {/* Demonstrating the reusability of the Chair component */}
-                <Chair x={0} y={0} chairId={1} />
-                <Chair x={100} y={0} chairId={2} />
-                <Chair x={0} y={80} chairId={3} />
-                <Chair x={100} y={80} chairId={4} />
+                {auditorium.seats.map(seat => {
+                    const rowSeats = auditorium.seats.filter(s => s.row === seat.row);
+                    const totalRowWidth = rowSeats.length * chairWidth + (rowSeats.length - 1) * chairHorizontalSpacing; // Adjusted total row width
+                    const xOffset = (canvasWidth - totalRowWidth) / 2; // Horizontal centering
+                    
+                    return (
+                        <Chair
+                            key={seat.id}
+                            x={(seat.number - 1) * (chairWidth + chairHorizontalSpacing) + xOffset}
+                            y={(seat.row - 1) * (chairHeight + chairVerticalSpacing) + yOffset}
+                            seat={seat}
+                            selected={selectedChairs.has(seat.id)}
+                            onClick={handleChairClick}
+                        />
+                    );
+                })}
             </svg>
         </div>
     );

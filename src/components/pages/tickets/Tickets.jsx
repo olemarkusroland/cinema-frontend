@@ -5,8 +5,6 @@ import { TicketCard } from '../../ticket-card/TicketCard';
 import { useContext, useState } from 'react';
 import { MovieContext } from '../../../context/MovieContext';
 import { ScreeningContext } from '../../../context/ScreeningContext';
-import { AuditoriumContext } from '../../../context/AuditoriumContext';
-
 
 import SeatMap from './seat-map/SeatMap';
 import { NavigationButton } from './navigation-button/NavigationButton';
@@ -20,9 +18,6 @@ export const Tickets = () => {
 
     const { movies } = useContext(MovieContext);
     const movie = movies.find(m => m.imdbID === screening.movieId);
-
-    const { auditoriums } = useContext(AuditoriumContext);
-    const auditorium = auditoriums.find(a => a.id === screening.auditoriumId);
 
     const ticketTypes = [
         { id: 1, name: 'Adult', price: 205, info: null },
@@ -64,7 +59,7 @@ export const Tickets = () => {
                             setQuantities={setQuantities}
                         />
                     ) : (
-                        <SeatMap auditorium={auditorium}/>
+                        <SeatMap auditoriumId={screening.auditoriumId}/>
                     )}
                     <NavigationButton step={step} handleNext={handleNext} totalTickets={totalTickets} totalPrice={totalPrice}/>
                 </div>
