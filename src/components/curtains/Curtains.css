@@ -1,6 +1,16 @@
 .curtain {
   overflow: hidden;
-  z-index: 200;
+  background-color: #630000;
+}
+
+.curtain__content {
+position: absolute;
+  background-color: white;
+  width: 75%;
+  min-height: 100vh;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 .curtain__panel {
@@ -9,7 +19,7 @@
   float: left;
   position: relative;
   width: 50%;
-  min-height: 100vh; 
+  min-height: 100vh;
   transition: all 0.2s ease-out;
   z-index: 100;
 }
@@ -22,12 +32,6 @@
 .curtain__panel--right {
   justify-content: flex-start;
   transform: translateX(calc(100% + 1px));
-}
-
-.curtain__content {
-  position: absolute;
-  width: 75%;
-  background-color: white;
 }
 
 .slide-in {

@@ -5,6 +5,7 @@ import { MovieProvider } from './context/MovieContext';
 import Curtains from './components/curtains/Curtains';
 import './App.css';
 import { AuditoriumProvider } from './context/AuditoriumContext';
+import { Header } from './components/header/Header';
 
 const theme = createTheme({
   palette: {
@@ -17,6 +18,7 @@ const theme = createTheme({
 function App() {
   return (
     <div>
+      <Header />
       <ThemeProvider theme={theme}>
         <MovieProvider>
           <AuditoriumProvider>
