@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { ScreeningProvider } from './context/ScreeningContext';
 import { MovieProvider } from './context/MovieContext';
 import Curtains from './components/curtains/Curtains';
+import { Header } from './components/header/Header';
 import './App.css';
 import { AuditoriumProvider } from './context/AuditoriumContext';
 
@@ -16,17 +17,16 @@ const theme = createTheme({
 
 function App() {
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        <MovieProvider>
-          <AuditoriumProvider>
-            <ScreeningProvider>
-              <Curtains />
-            </ScreeningProvider>
-          </AuditoriumProvider>
-        </MovieProvider>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <MovieProvider>
+        <AuditoriumProvider>
+          <ScreeningProvider>
+            <Header />
+            <Curtains />
+          </ScreeningProvider>
+        </AuditoriumProvider>
+      </MovieProvider>
+    </ThemeProvider>
   );
 }
 

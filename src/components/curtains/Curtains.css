@@ -1,32 +1,36 @@
 .curtain {
-  overflow: hidden;
-  z-index: 200;
+  position: relative;
 }
 
 .curtain__panel {
   position: fixed;
-  background: #630000;
-  float: left;
-  position: relative;
+  top: 0;
+  bottom: 0;
+  background: #070063;
   width: 50%;
-  min-height: 100vh; 
-  transition: all 0.2s ease-out;
-  z-index: 100;
+  min-height: 100vh;
+  transition: transform 0.2s ease-out;
+  z-index: 2;
 }
 
 .curtain__panel--left {
-  justify-content: flex-end;
+  left: 0;
   transform: translateX(calc(-100% - 1px));
 }
 
 .curtain__panel--right {
-  justify-content: flex-start;
+  right: 0;
   transform: translateX(calc(100% + 1px));
 }
 
-.curtain__content {
-  position: absolute;
+.curtain__wrapper {
+  position: relative;
   width: 75%;
+  margin: 0 auto;
+
+}
+
+.curtain__content {
   background-color: white;
 }
 
