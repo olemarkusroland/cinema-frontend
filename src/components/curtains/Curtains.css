@@ -1,10 +1,5 @@
-.curtain {
-  overflow: hidden;
-  background-color: #630000;
-}
-
-.curtain__content {
-position: absolute;
+.curtain-content {
+  position: absolute;
   background-color: white;
   width: 75%;
   min-height: 100vh;
@@ -26,12 +21,12 @@ position: absolute;
 
 .curtain__panel--left {
   justify-content: flex-end;
-  transform: translateX(calc(-100% - 1px));
+  transform: translateX(calc(-76%));
 }
 
 .curtain__panel--right {
   justify-content: flex-start;
-  transform: translateX(calc(100% + 1px));
+  transform: translateX(calc(76%));
 }
 
 .slide-in {

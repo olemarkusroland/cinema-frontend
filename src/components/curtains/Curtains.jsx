@@ -18,17 +18,15 @@ const Curtains = () => {
   }, [location]);
 
   return (
-    <div className="curtain">
-
-        <div className={`curtain__panel curtain__panel--left ${closeCurtain ? 'slide-in' : ''}`}></div>
-        {!closeCurtain && (
-          <div className="curtain__content">
+    <>
+      <div className={`curtain__panel curtain__panel--left ${closeCurtain ? 'slide-in' : ''}`}></div>
+        <div className="curtain-content">
+          {!closeCurtain && (
             <AppRoutes />
-          </div>
-        )}
-        <div className={`curtain__panel curtain__panel--right ${closeCurtain ? 'slide-in' : ''}`}></div>
-
-    </div>
+          )}
+        </div>
+      <div className={`curtain__panel curtain__panel--right ${closeCurtain ? 'slide-in' : ''}`}></div>
+    </>
   );
 };
 
