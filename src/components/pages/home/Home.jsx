@@ -46,18 +46,27 @@ export const Home = () => {
                 return screenings;
         }
     };
+
+    const filterPastScreenings = (screenings) => {
+        const now = dayjs();
+        return screenings.filter(screening => {
+            const screeningDateTime = dayjs(`${screening.date} ${screening.time}`);
+            return screeningDateTime.isAfter(now);
+        });
+    };
     
-    if (!screenings) {
+    if (!screenings || screenings.length === 0) {
         return (
-            <p>Screenings not found</p>
-        )
+            <p>Loading screenings...</p>
+        );
     }
     
     const filteredScreenings = screenings
         .filter(screening => screening.date === selectedDate)
         .filter(screening => selectedAuditoriumIds.length === 0 || selectedAuditoriumIds.includes(screening.auditoriumId));
 
-    const sortedScreenings = sortScreenings(filteredScreenings, sortOption);
+    const futureScreenings = filterPastScreenings(filteredScreenings);
+    const sortedScreenings = sortScreenings(futureScreenings, sortOption);
     
     return (
         <div className="home">

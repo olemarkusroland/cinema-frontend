@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 
 import { fetchCinema } from '../utils/fetchCinema.js';
-import { formatScreenings } from '../utils/format/formatScreenings.js/index.js';
+import { formatScreenings } from '../utils/format/formatScreenings.js';
 
 export const ScreeningContext = createContext();
 

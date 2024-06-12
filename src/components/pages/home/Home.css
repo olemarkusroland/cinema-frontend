@@ -5,9 +5,10 @@
 }
 
 .screenings {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px;
-    padding: 8px;
 }
