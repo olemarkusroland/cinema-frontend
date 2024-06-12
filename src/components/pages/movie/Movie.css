@@ -38,11 +38,17 @@
     margin-bottom: 0;
 }
 
-.place-times {
+.movie-screenings {
+    margin-top: 1rem;
     display: flex;
     
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 0.5rem;
+    row-gap: 1.2rem;
+}
+
+.movie-screening {
+    margin-bottom: 1rem;
 }
 
 .movie-details {

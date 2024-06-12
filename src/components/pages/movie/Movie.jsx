@@ -53,13 +53,13 @@ export const Movie = () => {
                     <p className='movie-description'>{movie.plot}</p>
                 </div>
             </div>
-            <div className='place-times'>
+            <div className='movie-screenings'>
                 {filteredScreenings.length > 0 ? (
                     filteredScreenings.map((screening, index) => (
                         <ScreeningCard 
                             key={index} 
                             screening={screening} 
-                            className="movie-place-time" 
+                            className="movie-screening" 
                         />
                     ))
                 ) : (
