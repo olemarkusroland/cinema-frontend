@@ -1,7 +1,8 @@
 import '../HomeHeader.css';
+import { formatDate } from '@/utils/format/formatDate';
 import { FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import dayjs from 'dayjs';
-import { formatDate } from '../../../../../utils/format/formatDate';
+import PropTypes from 'prop-types';
 
 export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
     const handleChange = (event) => {
@@ -39,4 +40,15 @@ export const DateSelect = ({ screenings, selectedDate, setSelectedDate }) => {
             </Select>
         </FormControl>
     );
+};
+
+DateSelect.propTypes = {
+    screenings: PropTypes.arrayOf(
+        PropTypes.shape({
+            date: PropTypes.string.isRequired,
+            // Add other required properties here
+        })
+    ).isRequired,
+    selectedDate: PropTypes.string.isRequired,
+    setSelectedDate: PropTypes.func.isRequired,
 };

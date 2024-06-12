@@ -1,7 +1,7 @@
 import './Seats.css'
 
 import { useLocation } from "react-router-dom";
-import { formatDate } from "../../../utils/format/formatDate";
+import { formatDate } from "@/utils/format/formatDate";
 
 export const PickSeats = () => {
     const location = useLocation();
