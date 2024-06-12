@@ -28,13 +28,18 @@ export const TicketCard = ({ screening, movie, isClickable = true, includeDate =
   );
 };
 
-ScreeningCard.propTypes = {
-  isClickable: PropTypes.bool,
-  screening: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    movieId: PropTypes.string.isRequired,
-  }).isRequired,
-  includeDate: PropTypes.bool,
+TicketCard.propTypes = {
+    isClickable: PropTypes.bool,
+    includeDate: PropTypes.bool,
+    movie: PropTypes.shape({
+        poster: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+    }),
+    screening: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        date: PropTypes.string.isRequired,
+        time: PropTypes.string.isRequired,
+        movieId: PropTypes.string.isRequired,
+    }).isRequired,
 };
+

@@ -35,10 +35,10 @@ export const ScreeningCard = ({ screening, isClickable = true, includeDate = tru
 
 ScreeningCard.propTypes = {
   screening: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-    auditorium: PropTypes.string.isRequired,
+    auditoriumId: PropTypes.number.isRequired,
   }).isRequired,
   isClickable: PropTypes.bool,
   includeDate: PropTypes.bool

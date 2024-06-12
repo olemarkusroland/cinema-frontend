@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createContext, useState, useEffect } from 'react';
 
 import { fetchCinema } from '../utils/fetchCinema.js';
@@ -8,7 +9,6 @@ export const ScreeningContext = createContext();
 export const ScreeningProvider = ({ children }) => {
     const [screenings, setScreenings] = useState([]);
 
-    
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetchCinema('screening');
@@ -23,4 +23,8 @@ export const ScreeningProvider = ({ children }) => {
             {children}
         </ScreeningContext.Provider>
     );
+};
+
+ScreeningProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from 'react';
 import { fetchCinema } from '../utils/fetchCinema';
 
@@ -20,4 +21,8 @@ export const AuditoriumProvider = ({ children }) => {
             {children}
         </AuditoriumContext.Provider>
     );
+};
+
+AuditoriumProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };

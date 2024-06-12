@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from 'react';
 import { fetchCinema } from '../utils/fetchCinema';
 
@@ -20,4 +21,8 @@ export const MovieProvider = ({ children }) => {
             {children}
         </MovieContext.Provider>
     );
+};
+
+MovieProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };
