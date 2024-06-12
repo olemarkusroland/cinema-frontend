@@ -6,25 +6,7 @@ import { ScreeningCard } from '../screening-card/ScreeningCard';
 import { Link } from 'react-router-dom';
 import { Poster } from '../poster/Poster';
 
-export const TicketCard = ({ screening, movie, isClickable = true, includeDate = true }) => {
-    let movieContent;
-
-    if (movie) {
-        movieContent = (
-            <div className="movie-link">
-                <Poster className={"poster"} movie={movie} />
-                <p className='title'>{movie.title}</p>
-            </div>
-        );
-    }
-    else {
-        movieContent = (
-            <div className="movie-link">
-                <p className='title'>Loading movie</p>
-            </div>
-        );
-    }
-    
+export const TicketCard = ({ screening, movie, isClickable = true, includeDate = true }) => {   
     return (
         <div className={`screening-card ${isClickable ? '' : 'non-clickable'}`}>
             {isClickable ? (
@@ -32,10 +14,10 @@ export const TicketCard = ({ screening, movie, isClickable = true, includeDate =
                     to={`movie/${screening.movieId}`}
                     className="movie-link"
                 >
-                    {movieContent}
+                    <Poster movie={movie} />
                 </Link>
             ) : (
-                movieContent
+                <Poster movie={movie} />
             )}
             <div className="perforation"></div>
             <div className='time-place-container bottom'>
